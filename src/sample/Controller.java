@@ -44,6 +44,8 @@ public class Controller {
     //2 - mod(ECB) and menu(text)
     private int checkMenu;
     private int checkMod;
+    DesCrypt dc = new DesCrypt();
+
 
     @FXML
     void CBC_Mod_checkButtonOnClick(ActionEvent event) {
@@ -76,8 +78,8 @@ public class Controller {
 
 
     @FXML
-    void cryptButtonClick(ActionEvent event) {
-
+    void cryptButtonClick(ActionEvent event) throws Exception {
+        
     }
 
 }
