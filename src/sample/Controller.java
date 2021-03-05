@@ -85,18 +85,17 @@ public class Controller {
     }
 
     String text;
-    String textcrypt = "hello";
+    String textcrypt = "hello wor";
 
     @FXML
     void encryptButtonClick(ActionEvent event) throws Exception {
-      try{
+
+        try{
         if(checkMenu == 1){
 
         }else if(checkMenu == 2){
-
             fl.creteFile(url,dc.encrypt(KeyTextField.getText(),CriptTextArea.getText(),checkMod),fileName.getText());
-            System.out.println(url);
-            System.out.println(dc.encrypt(KeyTextField.getText(),CriptTextArea.getText(),checkMod));
+            JOptionPane.showMessageDialog(null,"Check your " + url);
         }else{
             throw new Exception("Unselected Menu (File/Text)");
         }

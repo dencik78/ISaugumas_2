@@ -9,6 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.swing.*;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.security.Security;
 
 
 public class DesCrypt {
@@ -19,25 +20,27 @@ public class DesCrypt {
     //2 - mod(ECB) and menu(text)
 
     public String encrypt(String secretKey,String orgtext,int mode) throws Exception{
+
+
         IvParameterSpec ivParameterSpec = new IvParameterSpec(VECTOR.getBytes(StandardCharsets.UTF_8));
         SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8),"DES");
 
-        String mod = null;
-
+        String s = null;
         if(mode == 1) {
             //CBC mode
-            mod = "DES/CBC/PKCS5Padding";
-        }else if(mode == 2) {
+            Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE,secretKeySpec,ivParameterSpec);
+            s = new String(Hex.encodeHex(cipher.doFinal(orgtext.getBytes(StandardCharsets.UTF_8))));
+        } else if(mode == 2) {
             //ECB mod
-            mod = "DES/ECB/PKCS5Padding";
+            Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE,secretKeySpec);
+            s = new String(Hex.encodeHex(cipher.doFinal(orgtext.getBytes(StandardCharsets.UTF_8))));
         }else{
             throw new Exception("Unselected Mode (CBC/ECB)");
         }
 
-        assert mod != null;
-        Cipher cipher = Cipher.getInstance(mod);
-        cipher.init(Cipher.ENCRYPT_MODE,secretKeySpec,ivParameterSpec);
-        return new String(Hex.encodeHex(cipher.doFinal(orgtext.getBytes(StandardCharsets.UTF_8))));
+        return s;
 
     }
 
@@ -58,7 +61,6 @@ public class DesCrypt {
             throw new Exception("Unselected Mode (CBC/ECB)");
         }
 
-        assert mod != null;
         Cipher cipher = Cipher.getInstance(mod);
 
         cipher.init(Cipher.DECRYPT_MODE,secretKeySpec,ivParameterSpec);
