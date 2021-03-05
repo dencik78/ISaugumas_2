@@ -7,8 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 
 import javax.swing.*;
+import java.io.File;
 
 public class Controller {
 
@@ -39,13 +41,17 @@ public class Controller {
     @FXML
     private TextField KeyTextField;
 
+    @FXML
+    private Button decryptButton;
+
 
     //1 - mod(CBC) and menu(file)
     //2 - mod(ECB) and menu(text)
     private int checkMenu;
     private int checkMod;
     DesCrypt dc = new DesCrypt();
-
+    FileChooserCreaterAndSel fl = new FileChooserCreaterAndSel();
+    private String url;
 
     @FXML
     void CBC_Mod_checkButtonOnClick(ActionEvent event) {
@@ -61,7 +67,9 @@ public class Controller {
 
     @FXML
     void uploadButtonClick(ActionEvent event) {
-
+        DirectoryChooser file = new DirectoryChooser();
+        File fl = file.showDialog(null);
+        this.url = fl.toString();
     }
 
     @FXML
@@ -76,10 +84,39 @@ public class Controller {
         checkMenu = 2;
     }
 
+    String text;
+    String textcrypt = "hello";
 
     @FXML
-    void cryptButtonClick(ActionEvent event) throws Exception {
-        
+    void encryptButtonClick(ActionEvent event) throws Exception {
+      try{
+        if(checkMenu == 1){
+
+        }else if(checkMenu == 2){
+
+            fl.creteFile(url,dc.encrypt(KeyTextField.getText(),CriptTextArea.getText(),checkMod),fileName.getText());
+            System.out.println(url);
+            System.out.println(dc.encrypt(KeyTextField.getText(),CriptTextArea.getText(),checkMod));
+        }else{
+            throw new Exception("Unselected Menu (File/Text)");
+        }
+      }catch (Exception exc){
+          JOptionPane.showMessageDialog(null,exc.getMessage());
+      }
     }
 
+    @FXML
+    void decryptButtonClick(ActionEvent event) {
+        try {
+            if(checkMenu == 1){
+
+            } else if(checkMenu == 2){
+
+            } else{
+                throw new Exception("Unselected Menu (File/Text)");
+            }
+        } catch (Exception exc) {
+            JOptionPane.showMessageDialog(null, exc.getMessage());
+        }
+    }
 }

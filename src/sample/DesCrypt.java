@@ -6,6 +6,7 @@ import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import javax.swing.*;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 
@@ -29,6 +30,8 @@ public class DesCrypt {
         }else if(mode == 2) {
             //ECB mod
             mod = "DES/ECB/PKCS5Padding";
+        }else{
+            throw new Exception("Unselected Mode (CBC/ECB)");
         }
 
         assert mod != null;
@@ -51,6 +54,8 @@ public class DesCrypt {
         }else if(mode == 2) {
             //ECB mod
             mod = "DES/ECB/PKCS5Padding";
+        }else{
+            throw new Exception("Unselected Mode (CBC/ECB)");
         }
 
         assert mod != null;
