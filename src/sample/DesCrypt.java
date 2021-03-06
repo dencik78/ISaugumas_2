@@ -49,22 +49,22 @@ public class DesCrypt {
         SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8),"DES");
 
 
-        String mod = null;
+        String s;
 
         if(mode == 1) {
             //CBC mode
-            mod = "DES/CBC/PKCS5Padding";
+            Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+            cipher.init(Cipher.DECRYPT_MODE,secretKeySpec,ivParameterSpec);
+            s = new String(cipher.doFinal(Hex.decodeHex(cipherText.toCharArray())));
         }else if(mode == 2) {
             //ECB mod
-            mod = "DES/ECB/PKCS5Padding";
+            Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+            cipher.init(Cipher.DECRYPT_MODE,secretKeySpec);
+            s = new String(cipher.doFinal(Hex.decodeHex(cipherText.toCharArray())));
         }else{
             throw new Exception("Unselected Mode (CBC/ECB)");
         }
 
-        Cipher cipher = Cipher.getInstance(mod);
-
-        cipher.init(Cipher.DECRYPT_MODE,secretKeySpec,ivParameterSpec);
-
-        return new String(cipher.doFinal(Hex.decodeHex(cipherText.toCharArray())));
+        return s;
     }
 }

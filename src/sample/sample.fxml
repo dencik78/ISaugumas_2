@@ -20,18 +20,21 @@
    <children>
       <Pane prefHeight="380.0" prefWidth="469.0">
          <children>
-            <TextArea fx:id="CriptTextArea" layoutX="16.0" layoutY="147.0" prefHeight="86.0" prefWidth="438.0" />
+            <TextArea fx:id="CriptTextArea" layoutX="16.0" layoutY="147.0" prefHeight="86.0" prefWidth="438.0" promptText="Your Text...." />
             <CheckBox fx:id="ECB_Mod_checkButton" layoutX="192.0" layoutY="277.0" mnemonicParsing="false" onAction="#ECB_Mod_checkButtonOnClick" prefHeight="17.0" prefWidth="85.0" text="ECB Mod" />
             <CheckBox fx:id="fileChekButton" layoutX="397.0" layoutY="23.0" mnemonicParsing="false" onAction="#fileCheckButtonOnClick" text="File" />
             <CheckBox fx:id="textCheckButton" layoutX="397.0" layoutY="47.0" mnemonicParsing="false" onAction="#textChekButtonOnClick" text="Text" />
             <CheckBox fx:id="CBC_Mod_checkButton" layoutX="192.0" layoutY="253.0" mnemonicParsing="false" onAction="#CBC_Mod_checkButtonOnClick" prefHeight="17.0" prefWidth="85.0" text="CBC Mod" />
             <Button fx:id="encryptButton" layoutX="127.0" layoutY="341.0" mnemonicParsing="false" onAction="#encryptButtonClick" text="Encrypt" />
-            <Button fx:id="uploadButton" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#uploadButtonClick" text="Upload file" />
-            <TextField fx:id="fileName" layoutX="76.0" layoutY="55.0" prefHeight="25.0" prefWidth="146.0" />
-            <Text layoutX="14.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File name" />
+            <Button fx:id="uploadButton" layoutX="320.0" layoutY="78.0" mnemonicParsing="false" onAction="#uploadButtonClick" prefHeight="17.0" prefWidth="77.0" text="Upload file" />
+            <TextField fx:id="fileName" layoutX="76.0" layoutY="78.0" prefHeight="25.0" prefWidth="146.0" promptText="Example.txt" />
+            <Text layoutX="9.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File name" />
             <Text layoutX="41.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key" />
-            <TextField fx:id="KeyTextField" layoutX="75.0" layoutY="107.0" />
+            <TextField fx:id="KeyTextField" layoutX="75.0" layoutY="107.0" promptText="Key size 8 symbols" />
             <Button fx:id="decryptButton" layoutX="277.0" layoutY="341.0" mnemonicParsing="false" onAction="#decryptButtonClick" text="Decrypt" />
+            <TextField fx:id="selectFolderTextField" layoutX="106.0" layoutY="19.0" prefHeight="25.0" prefWidth="258.0" />
+            <Button fx:id="selectFolderButton" layoutX="10.0" layoutY="19.0" mnemonicParsing="false" onAction="#selectFolderButtonAction" text="Select folder" />
+            <TextField fx:id="uploadFileTextField" layoutX="261.0" layoutY="107.0" prefHeight="25.0" prefWidth="200.0" />
          </children>
       </Pane>
    </children>
