@@ -108,7 +108,7 @@ public class Controller {
     void decryptButtonClick(ActionEvent event) {
         try {
             if(checkMenu == 1){
-
+                System.out.println(fl.readTextFile("C:\\Users\\Sasuke\\Desktop\\crypttt.txt"));
             } else if(checkMenu == 2){
 
             } else{
